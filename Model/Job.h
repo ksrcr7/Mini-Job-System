@@ -17,6 +17,7 @@ namespace backend{
 
     public:
         Job(int num,Payload  p);
+        [[nodiscard]] int getId()const;
 
 
 
