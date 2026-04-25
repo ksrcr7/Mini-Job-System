@@ -19,6 +19,7 @@ namespace backend{
         Job(int num,const Payload&  p);
         [[nodiscard]] int getId()const;
         [[nodiscard]] JobStatus getStatus()const;
+        const Payload& getPayload();
 
 
 
