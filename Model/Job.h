@@ -16,8 +16,9 @@ namespace backend{
         JobStatus status;
 
     public:
-        Job(int num,Payload  p);
+        Job(int num,const Payload&  p);
         [[nodiscard]] int getId()const;
+        [[nodiscard]] JobStatus getStatus()const;
 
 
 

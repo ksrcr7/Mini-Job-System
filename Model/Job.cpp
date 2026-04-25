@@ -3,8 +3,14 @@
 
 #include <utility>
 
-backend::Job::Job(int jobId, backend::Payload p): payload(std::move(p)),id(jobId),status(JobStatus::Pending){}
+backend::Job::Job(int jobId, const Payload& p): payload(p),id(jobId),status(JobStatus::Pending){}
 
 int backend::Job::getId() const {
     return id;
 }
+
+backend::Job::JobStatus backend::Job::getStatus() const {
+    return status;
+}
+
+
