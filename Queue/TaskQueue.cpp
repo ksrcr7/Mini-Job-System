@@ -18,3 +18,7 @@ std::unique_ptr<backend::Job> backend::TaskQueue::pop() {
 bool backend::TaskQueue::empty() const {
     return jobs.empty();
 }
+
+size_t backend::TaskQueue::size() const {
+    return jobs.size();
+}
