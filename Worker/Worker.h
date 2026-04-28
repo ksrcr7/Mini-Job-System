@@ -12,6 +12,7 @@ namespace backend{
 
     public:
         explicit Worker(TaskQueue& TQ);
+        void processNextJob();
 
 
     };
