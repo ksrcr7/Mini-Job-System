@@ -14,6 +14,7 @@ namespace backend{
     public:
         void push(std::unique_ptr<Job> job);
         std::unique_ptr<Job> pop();
+        bool empty() const;
         
 
     };
