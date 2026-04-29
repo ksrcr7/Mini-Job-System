@@ -15,6 +15,7 @@ namespace backend{
 
     public:
         void addJob(std::unique_ptr<Job> job);
+        size_t size() const;
 
     };
 
