@@ -2,7 +2,7 @@
 
 #include "Worker.h"
 
-backend::Worker::Worker(backend::TaskQueue &TQ): taskQueue(TQ) {}
+backend::Worker::Worker(backend::TaskQueue &TQ,CompleteJobStorage& JB): taskQueue(TQ),jobStorage(JB) {}
 
 void backend::Worker::processNextJob() {
     auto nextJob = taskQueue.pop();
