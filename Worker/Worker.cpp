@@ -15,5 +15,6 @@ void backend::Worker::processNextJob() {
              << " | Description: " << nextJob->getPayload().description<<std::endl;
 
     nextJob->setStatus(backend::Job::JobStatus::Done);
+    jobStorage.addJob(std::move(nextJob));
 
 }
