@@ -16,6 +16,7 @@ namespace backend{
     public:
         void addJob(std::unique_ptr<Job> job);
         [[nodiscard]] size_t size() const;
+        const std::vector<std::unique_ptr<backend::Job>>& getAll();
 
     };
 
