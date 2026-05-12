@@ -1,6 +1,9 @@
 
 
 #include "Worker.h"
+#include <mutex>
+
+std::mutex coutMutex;
 
 backend::Worker::Worker(backend::TaskQueue &TQ,CompleteJobStorage& JB): taskQueue(TQ),jobStorage(JB) {}
 
@@ -21,6 +24,7 @@ void backend::Worker::processNextJob() {
 
 void backend::Worker::run() {
     while (true){
+        std::lock_guard<std::mutex> lock(coutMutex);
         auto job = taskQueue.pop();
         if(job == nullptr)
             break;
