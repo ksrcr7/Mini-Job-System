@@ -18,3 +18,19 @@ void backend::Worker::processNextJob() {
     jobStorage.addJob(std::move(nextJob));
 
 }
+
+void backend::Worker::run() {
+    while (true){
+        auto job = taskQueue.pop();
+        if(job == nullptr)
+            break;
+
+        job->setStatus(backend::Job::JobStatus::Running);
+        std::cout<<"[Worker] Processing Job ID: " << job->getId()
+                 << " | Description: " << job->getPayload().description<<std::endl;
+        job->setStatus(backend::Job::JobStatus::Done);
+        jobStorage.addJob(std::move(job));
+
+    }
+
+}

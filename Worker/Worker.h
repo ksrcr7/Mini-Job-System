@@ -15,6 +15,7 @@ namespace backend{
     public:
         explicit Worker(TaskQueue& TQ,CompleteJobStorage& JB);
         void processNextJob();
+        void run();
 
 
     };
