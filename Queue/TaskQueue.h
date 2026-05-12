@@ -4,12 +4,14 @@
 #include "../Model/Job.h"
 #include <queue>
 #include <memory>
+#include <mutex>
 
 namespace backend{
 
     class TaskQueue {
     private:
         std::queue<std::unique_ptr<Job>> jobs;
+        mutable std::mutex mtx;
 
     public:
         void push(std::unique_ptr<Job> job);

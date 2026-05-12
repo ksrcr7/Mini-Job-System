@@ -1,11 +1,15 @@
 #include "TaskQueue.h"
 
 void backend::TaskQueue::push(std::unique_ptr<Job> job) {
+    std::lock_guard<std::mutex> lock(mtx);
     jobs.push(std::move(job));
 
 }
 
 std::unique_ptr<backend::Job> backend::TaskQueue::pop() {
+
+    std::lock_guard<std::mutex> lock(mtx);
+
     if(jobs.empty())
         return nullptr;
 
@@ -16,9 +20,11 @@ std::unique_ptr<backend::Job> backend::TaskQueue::pop() {
 }
 
 bool backend::TaskQueue::empty() const {
+    std::lock_guard<std::mutex> lock(mtx);
     return jobs.empty();
 }
 
 size_t backend::TaskQueue::size() const {
+    std::lock_guard<std::mutex> lock(mtx);
     return jobs.size();
 }
