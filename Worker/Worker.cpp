@@ -23,18 +23,23 @@ void backend::Worker::processNextJob() {
 }
 
 void backend::Worker::run() {
-    while (true){
-        std::lock_guard<std::mutex> lock(coutMutex);
+    while (true) {
+
         auto job = taskQueue.pop();
-        if(job == nullptr)
+        if (job == nullptr)
             break;
 
         job->setStatus(backend::Job::JobStatus::Running);
-        std::cout<<"[Worker] Processing Job ID: " << job->getId()
-                 << " | Description: " << job->getPayload().description<<std::endl;
+
+        {
+            std::lock_guard<std::mutex> lock(coutMutex);
+
+            std::cout << "[Worker] Processing Job ID: " << job->getId()
+                      << " | Description: " << job->getPayload().description
+                      << std::endl;
+        }
+
         job->setStatus(backend::Job::JobStatus::Done);
         jobStorage.addJob(std::move(job));
-
     }
-
 }
